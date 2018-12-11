@@ -49,7 +49,7 @@ public class ValidateId {
     public ArrayList<String> getCard(String str) {
         int len = str.length();
         ArrayList<String> list = new ArrayList<String>();
-        for(int i = 0; i < len-17; i++){
+        for(int i = 0; i < len-17; i++) {
             list.add(str.substring(i, i+18));
         }
 
