@@ -9,8 +9,10 @@ import java.util.regex.Pattern;
 
 public class ValidateId {
 
-    //public ValidateId() {};
-
+    /**
+     * (string)数组包含的身份证号
+     *
+     */
     public ArrayList<String> isIdCard(String[] args) {
         ArrayList<String> result = new ArrayList<String>();
         for(int i = 0; i < args.length; i++) {
@@ -29,26 +31,41 @@ public class ValidateId {
     }
 
     /**
-     * 匹配18位身份证号
+     * 匹配18位以上或者x结尾的
      *
      * @param str 待匹配字符串
      */
     public Matcher getCardFromString(String str) {
-        String pattern = "(\\d{17,}x)|(\\d{18,})";
+        String pattern = "(\\d{17,}(x|X))|(\\d{18,})";
         Matcher matcher = Pattern.compile(pattern).matcher(str);
         return matcher;
     }
 
-    /*>=18位的分割成18位*/
+    /**
+     * >=18位的分割成18位
+     *
+     * @param str 正则匹配后>=18位的字符串
+     */
     public ArrayList<String> getCard(String str) {
         int len = str.length();
         ArrayList<String> list = new ArrayList<String>();
         for(int i = 0; i < len-17; i++){
-            list.add(str.substring(i, i+17));
+            list.add(str.substring(i, i+18));
         }
 
         return list;
     }
+
+    /**
+     * 校验18位字符是否身份证
+     *
+     * @param card 身份证号码
+     */
+    public Boolean validate(String card) {
+        String birthday = card.substring(6, 13);
+        return checkLastNumber(card) && checkBirthday(birthday);
+    }
+
 
     /**
      * 校验末尾值符合预期
@@ -62,7 +79,7 @@ public class ValidateId {
         int result = 0;
 
         char[] char_card = card.toCharArray();
-        char lastnumber = card.substring(17).charAt(0);
+        char lastnumber = card.charAt(17);
 
         for(int i = 0; i < 17; i++) {
             int_card[i] = Integer.parseInt(char_card[i] + "");
@@ -77,7 +94,7 @@ public class ValidateId {
     /**
      * 校验生日
      *
-     * @param birthday 生日
+     * @param birthday string日期yyyyMMdd格式
      */
     public Boolean checkBirthday(String birthday) {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
@@ -93,23 +110,6 @@ public class ValidateId {
         }
 
         return true;
-    }
-
-    public Boolean validate(String card) {
-        String birthday = card.substring(6, 13);
-        return checkLastNumber(card) && checkBirthday(birthday);
-    }
-
-    public ArrayList<String> getIdCardFromList(ArrayList<String> list) {
-        ArrayList<String> result = new ArrayList<String>();
-
-        for(String i : list) {
-            if(validate(i)) {
-                result.add(i);
-            }
-        }
-
-        return result;
     }
 
 

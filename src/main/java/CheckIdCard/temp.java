@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class temp {
 
     public static void getNum(String str1) {
-        String pattern = "(\\d{17}x)|(\\d{18,})";
+        String pattern = "(\\d{17}(x|X))|(\\d{18,})";
         //String pattern = "\w+@(\w+\.)+\w+";
         Matcher m = Pattern.compile(pattern).matcher(str1);
 //        if (m.find( )) {
@@ -24,7 +24,13 @@ public class temp {
     }
 
     public static void main(String args[]) {
-        getNum("1234abc2320830198907050034fww32083019890705003x32083019890705005x");
+        //getNum("1234abc2320830198907050034fww32083088819890705003X32083019890705005x");
         //getNum("hello abc bbc cbc ccc");
+        String a="bcefwef";
+//        char[] char1 = a.toCharArray();
+//        for(char i : char1) {
+//            System.out.println(i);
+//        }
+        System.out.println(a.substring(0,1));
     }
 }
