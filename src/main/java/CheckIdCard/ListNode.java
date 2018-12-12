@@ -1,7 +1,7 @@
 package CheckIdCard;
 
-public class ListNode
-{
+public class ListNode {
+
     int val;
     ListNode next;
 
@@ -9,10 +9,12 @@ public class ListNode
         val=x;
     }
 
-    public void main(ListNode head) {
-        ListNode slowPointer, fastPointer;
 
+    public void main(ListNode head) {
+
+        ListNode slowPointer, fastPointer;
         slowPointer = fastPointer = head;
+
         while(fastPointer != null && fastPointer.next != null){
             slowPointer = slowPointer.next;
             fastPointer = fastPointer.next.next;

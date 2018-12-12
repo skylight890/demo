@@ -46,6 +46,5 @@ public class temp {
         ll.add("E");
         ll.add("D");
         ll.add("B");
-        Node.
     }
 }
