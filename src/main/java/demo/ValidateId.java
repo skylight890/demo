@@ -1,4 +1,4 @@
-package CheckIdCard;
+package demo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +15,7 @@ public class ValidateId {
      */
     public ArrayList<String> isIdCard(String[] args) {
         ArrayList<String> result = new ArrayList<String>();
+
         for(int i = 0; i < args.length; i++) {
             Matcher m = getCardFromString(args[i]);
             while(m.find()) {
@@ -35,7 +36,7 @@ public class ValidateId {
      *
      * @param str 待匹配字符串
      */
-    public Matcher getCardFromString(String str) {
+    private Matcher getCardFromString(String str) {
         String pattern = "(\\d{17,}(x|X))|(\\d{18,})";
         Matcher matcher = Pattern.compile(pattern).matcher(str);
         return matcher;
@@ -46,9 +47,10 @@ public class ValidateId {
      *
      * @param str 正则匹配后>=18位的字符串
      */
-    public ArrayList<String> getCard(String str) {
+    private ArrayList<String> getCard(String str) {
         int len = str.length();
         ArrayList<String> list = new ArrayList<String>();
+
         for(int i = 0; i < len-17; i++) {
             list.add(str.substring(i, i+18));
         }
@@ -61,7 +63,7 @@ public class ValidateId {
      *
      * @param card 身份证号码
      */
-    public Boolean validate(String card) {
+    private Boolean validate(String card) {
         String birthday = card.substring(6, 13);
         return checkLastNumber(card) && checkBirthday(birthday);
     }
@@ -72,7 +74,7 @@ public class ValidateId {
      *
      * @param card 身份证号码
      */
-    public Boolean checkLastNumber(String card) {
+    private Boolean checkLastNumber(String card) {
         int[] factors = { 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 };
         char[] expects = { '1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2' };
         int[] int_card = new int[17];
@@ -96,9 +98,10 @@ public class ValidateId {
      *
      * @param birthday string日期yyyyMMdd格式
      */
-    public Boolean checkBirthday(String birthday) {
+    private Boolean checkBirthday(String birthday) {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         Date date = null;
+
         try {
             date = format.parse(birthday);
         } catch (ParseException e) {

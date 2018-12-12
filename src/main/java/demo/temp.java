@@ -1,6 +1,4 @@
-package CheckIdCard;
-
-import org.w3c.dom.Node;
+package demo;
 
 import java.util.LinkedList;
 import java.util.regex.Matcher;

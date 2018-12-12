@@ -1,4 +1,4 @@
-package CheckIdCard;
+package demo;
 
 public class Singleton{
 
@@ -7,9 +7,9 @@ public class Singleton{
     private Singleton(){}
 
     public static Singleton getInstance(){
-        if(instance == null) {          //修改
+        if(instance == null) {          //修改没有时创建
             instance = new Singleton();
         }
-        return instance;        //修改
+        return instance;        //修改位置
     }
 }

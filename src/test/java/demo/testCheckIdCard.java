@@ -1,4 +1,4 @@
-package CheckIdCard;
+package demo;
 
 import java.util.ArrayList;
 

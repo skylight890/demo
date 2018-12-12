@@ -1,7 +1,4 @@
-package CheckIdCard;
-
-import java.util.Iterator;
-import java.util.LinkedList;
+package demo;
 
 public class LinkList {
 
